@@ -1,4 +1,5 @@
 # docker-compose.yml
+
 services:
   app:
     build: .
@@ -6,9 +7,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/code/app  # Esta linha já existe
-      - ./alembic:/code/alembic  # <-- ADICIONE ESTA LINHA
-      - ./alembic.ini:/code/alembic.ini # <-- ADICIONE ESTA LINHA
+      - ./app:/code/app
+      - ./alembic:/code/alembic
+      - ./alembic.ini:/code/alembic.ini
+      - ./scripts:/code/scripts
     env_file:
       - ./.env
     depends_on:
