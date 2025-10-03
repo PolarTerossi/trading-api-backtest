@@ -1,18 +1,20 @@
-version: '3.8'
-
+# docker-compose.yml
 services:
-  # Serviço da nossa API Python
   app:
     build: .
     container_name: trading_api_app
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/code/app # Mapeia a pasta app local para dentro do container para live-reload
+      - ./app:/code/app  # Esta linha já existe
+      - ./alembic:/code/alembic  # <-- ADICIONE ESTA LINHA
+      - ./alembic.ini:/code/alembic.ini # <-- ADICIONE ESTA LINHA
     env_file:
       - ./.env
     depends_on:
       - db
+  
+  # ... (o resto do arquivo continua igual)
 
   # Serviço do banco de dados Postgres
   db:
